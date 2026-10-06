@@ -5,11 +5,11 @@
 
 
 /* Create the database */
-DROP DATABASE classicmodels4;
-CREATE DATABASE IF NOT EXISTS classicmodels4;
+DROP DATABASE classicmodels5;
+CREATE DATABASE IF NOT EXISTS classicmodels5;
 
-/* Switch to the classicmodels4 database */
-USE classicmodels4;
+/* Switch to the classicmodels5 database */
+USE classicmodels5;
 
 /* Drop existing tables  */
 DROP TABLE IF EXISTS orderdetails;
@@ -40,6 +40,8 @@ CREATE TABLE products (
   quantityInStock smallint(6) NOT NULL,
   buyPrice decimal(10,2) NOT NULL,
   MSRP decimal(10,2) NOT NULL,
+  INDEX (productLine),
+  UNIQUE (productName),
   PRIMARY KEY (productCode)
 );
 
@@ -53,6 +55,7 @@ CREATE TABLE offices (
   country varchar(50) NOT NULL,
   postalCode varchar(15) NOT NULL,
   territory varchar(10) NOT NULL,
+  INDEX (postalCode, territory),
   PRIMARY KEY (officeCode)
 );
 

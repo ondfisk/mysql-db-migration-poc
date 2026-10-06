@@ -5,11 +5,11 @@
 
 
 /* Create the database */
-DROP DATABASE classicmodels4;
-CREATE DATABASE IF NOT EXISTS classicmodels4;
+DROP DATABASE classicmodels5;
+CREATE DATABASE IF NOT EXISTS classicmodels5;
 
-/* Switch to the classicmodels4 database */
-USE classicmodels4;
+/* Switch to the classicmodels5 database */
+USE classicmodels5;
 
 /* Drop existing tables  */
 DROP TABLE IF EXISTS orderdetails;
@@ -40,11 +40,12 @@ CREATE TABLE products (
   quantityInStock smallint(6) NOT NULL,
   buyPrice decimal(10,2) NOT NULL,
   MSRP decimal(10,2) NOT NULL,
+  KEY (productName)
   PRIMARY KEY (productCode)
 );
 
 CREATE TABLE offices (
-  officeCode varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_danish_ci,
+  officeCode varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_danish_ci NOT NULL,
   city varchar(50) NOT NULL,
   phone varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_danish_ci NOT NULL,
   addressLine1 varchar(50) NOT NULL,
@@ -85,6 +86,7 @@ CREATE TABLE customers (
   salesRepEmployeeNumber int DEFAULT NULL,
   creditLimit decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (customerNumber),
+  UNIQUE (customerName),
   FOREIGN KEY (salesRepEmployeeNumber) REFERENCES employees (employeeNumber)
 ) COLLATE utf8mb4_czech_ci;
 
